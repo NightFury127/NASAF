@@ -811,6 +811,9 @@ textarea.form-control {
     format("woff2");
 }
 
+/* Import a space / sci-fi display font for the site title (Orbitron) */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&display=swap');
+
 /* END PERPLEXITY DESIGN SYSTEM */
 /* ====================================
    EXOPEDIA CSS STYLESHEET
@@ -1419,8 +1422,9 @@ body {
 
 /* Main Title - Animated gradient text effect */
 .exopedia-title {
+  font-family: 'Orbitron', var(--font-family-base);
   font-size: clamp(3rem, 8vw, 6rem);
-  font-weight: var(--font-weight-bold);
+  font-weight: 700;
   letter-spacing: 0.1em;
   margin-bottom: var(--space-20);
   color: var(--electric-blue);
