@@ -515,15 +515,18 @@ pre code {
 .form-control {
   display: block;
   width: 100%;
-  padding: var(--space-8) var(--space-12);
+  padding: var(--space-12) var(--space-16);
   font-size: var(--font-size-md);
   line-height: 1.5;
   color: var(--color-text);
-  background-color: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-base);
+  /* dark, slightly glossy input surface to match the background image */
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  background-color: rgba(12,14,18,0.6);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: var(--radius-lg);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.02), 0 6px 18px rgba(0,0,0,0.6);
   transition: border-color var(--duration-fast) var(--ease-standard),
-    box-shadow var(--duration-fast) var(--ease-standard);
+    box-shadow var(--duration-fast) var(--ease-standard), transform var(--duration-fast);
 }
 
 textarea.form-control {
@@ -560,8 +563,30 @@ select.form-control {
 }
 
 .form-control:focus {
-  border-color: var(--color-primary);
-  outline: var(--focus-outline);
+  border-color: rgba(var(--color-teal-500-rgb),0.9);
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(var(--color-teal-500-rgb), 0.12), 0 8px 20px rgba(0,0,0,0.6);
+}
+
+/* Smaller search input variant used in dashboard */
+.search-input-group input[type="text"],
+.search-input-group input[type="search"] {
+  padding: var(--space-10) var(--space-12);
+  border-radius: var(--radius-md);
+}
+
+/* Make select controls visually consistent */
+select.form-control {
+  -webkit-appearance: none;
+  appearance: none;
+  background-image: var(--select-caret-dark);
+  background-repeat: no-repeat;
+  background-position: right var(--space-12) center;
+}
+
+textarea.form-control {
+  min-height: 120px;
+  resize: vertical;
 }
 
 .form-label {
@@ -802,6 +827,8 @@ select.form-control {
   --glass-bg: rgba(255, 255, 255, 0.05);
   --glass-border: rgba(255, 255, 255, 0.1);
   --glass-backdrop: blur(20px);
+  /* Background image for the app (use remote starfield) */
+  --bg-image: url("https://4kwallpapers.com/images/wallpapers/stars-galaxy-2560x2560-10307.jpg");
 
   /* Animation Properties - Smooth transitions and timing */
   --easing-cosmic: cubic-bezier(0.4, 0, 0.2, 1);
@@ -819,10 +846,9 @@ select.form-control {
      Reduced to minimize large empty gaps above content. */
   --nav-offset: 92px;
   --nav-offset-mobile: 64px;
-  /* Background image for the whole app. Place your image at 'assets/space-bg.jpg'
-     or update the path below to point to your local file (for example the temp path
-     you provided). */
-  --bg-image: url("assets/space-bg.jpg");
+  /* Background image for the whole app. Using the provided starfield URL so the
+    same background appears across all pages. */
+  --bg-image: url("https://4kwallpapers.com/images/wallpapers/stars-galaxy-2560x2560-10307.jpg");
   --ui-surface-opaque: rgba(6, 8, 10, 0.96);
 }
 
@@ -854,11 +880,7 @@ body {
   position: fixed;
   top: 0;
 
-  /* Opaque Data Islands
-   Override glassmorphic backgrounds for main content panels so "data islands"
-   are opaque and readable against the starfield background. Uses the
-   --ui-surface-opaque variable defined in :root. We use !important to ensure
-   these overrides take precedence over earlier glass styles. */
+  /* Translucent Data Islands during loading - preserve blurred background look */
   .card,
   .card__body,
   .card__header,
@@ -886,12 +908,12 @@ body {
   .history-card,
   .results-grid > div,
   .detection-grid > .detection-panel {
-    background: var(--ui-surface-opaque) !important;
+    background: linear-gradient(180deg, rgba(6,8,10,0.36), rgba(6,8,10,0.28)) !important;
     color: var(--color-text) !important;
     border: 1px solid rgba(255, 255, 255, 0.04) !important;
-    box-shadow: var(--shadow-md) !important;
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
+    box-shadow: 0 8px 30px rgba(2,6,10,0.6) !important;
+    backdrop-filter: blur(12px) saturate(120%) !important;
+    -webkit-backdrop-filter: blur(12px) saturate(120%) !important;
   }
 
   /* Make buttons and smaller interactive elements preserve contrast */
@@ -1218,7 +1240,7 @@ body {
   z-index: 3;
 }
 
-/* Make data 'islands' opaque and disable glass blur */
+/* Make data 'islands' translucent and blurred so the starfield shows through */
 .card,
 .card__body,
 .card__header,
@@ -1233,10 +1255,12 @@ body {
 .manual-params-panel,
 .results-actions-panel,
 .similar-planets-panel {
-  background: var(--surface-opaque) !important;
-  border-color: rgba(255, 255, 255, 0.03) !important;
-  box-shadow: var(--shadow-md) !important;
-  backdrop-filter: none !important; /* disable blur so it's fully opaque */
+  background: linear-gradient(180deg, rgba(6,8,10,0.36), rgba(6,8,10,0.28)) !important;
+  border: 1px solid rgba(255,255,255,0.06) !important;
+  box-shadow: 0 8px 30px rgba(2,6,10,0.6) !important;
+  backdrop-filter: blur(12px) saturate(120%) !important;
+  -webkit-backdrop-filter: blur(12px) saturate(120%) !important;
+  background-clip: padding-box;
 }
 
 /* Slightly reduce opacity on floating shapes so they remain decorative */
@@ -3546,7 +3570,7 @@ body {
 /* Animations - Keyframe animations for UI elements */
 @keyframes spin {
   to {
-    transform: rotate(360deg);
+    background: var(--deep-space) no-repeat center/cover var(--bg-image);
   }
 }
 
