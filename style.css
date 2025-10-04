@@ -811,7 +811,7 @@ textarea.form-control {
     format("woff2");
 }
 
-/* Import a space / sci-fi display font for the site title (Orbitron) */
+/* Minimal futuristic display for site title */
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&display=swap');
 
 /* END PERPLEXITY DESIGN SYSTEM */
@@ -1422,18 +1422,14 @@ body {
 
 /* Main Title - Animated gradient text effect */
 .exopedia-title {
-  font-family: 'Orbitron', var(--font-family-base);
+  font-family: 'Orbitron', system-ui, -apple-system, "Segoe UI", Roboto, "FKGroteskNeue", sans-serif;
   font-size: clamp(3rem, 8vw, 6rem);
   font-weight: 700;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.08em;
   margin-bottom: var(--space-20);
   color: var(--electric-blue);
-  text-shadow: 0 0 30px rgba(0, 217, 255, 0.8);
-  background: linear-gradient(
-    135deg,
-    var(--electric-blue),
-    var(--purple-nebula)
-  );
+  text-shadow: 0 0 36px rgba(0, 217, 255, 0.9), 0 6px 24px rgba(0,0,0,0.6);
+  background: linear-gradient(135deg, var(--electric-blue), var(--purple-nebula));
   -webkit-background-clip: text;
   background-clip: text;
   animation: title-glow 3s ease-in-out infinite alternate;
