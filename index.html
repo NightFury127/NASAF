@@ -1,952 +1,1353 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EXOPEDIA - AI-Powered Exoplanet Detection & Discovery Platform</title>
-    <link rel="stylesheet" href="style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      EXOPEDIA - AI-Powered Exoplanet Detection & Discovery Platform
+    </title>
+    <link rel="stylesheet" href="style.css" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-</head>
-<body>
+  </head>
+  <body>
     <!-- LOADING SCREEN: Initial app loading state -->
     <div class="loading-screen" id="loadingScreen">
-        <div class="loading-content">
-            <div class="loading-spinner"></div>
-            <p class="loading-text">Initializing Deep Space Connection...</p>
-        </div>
+      <div class="loading-content">
+        <div class="loading-spinner"></div>
+        <p class="loading-text">Initializing Deep Space Connection...</p>
+      </div>
     </div>
 
     <!-- NAVIGATION: Main navigation bar with all app sections -->
     <nav class="main-nav" id="mainNav">
-        <div class="nav-container">
-            <div class="nav-logo">
-                <span class="logo-text">EXOPEDIA</span>
-            </div>
-            <!-- Navigation Links: Each link switches to a different view/section -->
-            <ul class="nav-links">
-                <li><a href="#landing" class="nav-link active" data-view="landing">
-                    <span class="nav-icon">🏠</span>
-                    <span class="nav-text">Home</span>
-                </a></li>
-                <li><a href="#detection" class="nav-link" data-view="detection">
-                    <span class="nav-icon">🤖</span>
-                    <span class="nav-text">AI Detection</span>
-                </a></li>
-                <li><a href="#results" class="nav-link" data-view="results">
-                    <span class="nav-icon">📊</span>
-                    <span class="nav-text">Results</span>
-                </a></li>
-                <li><a href="#dashboard" class="nav-link" data-view="dashboard">
-                    <span class="nav-icon">🌌</span>
-                    <span class="nav-text">Dashboard</span>
-                </a></li>
-                <li><a href="#explorer" class="nav-link" data-view="explorer">
-                    <span class="nav-icon">🔭</span>
-                    <span class="nav-text">Explorer</span>
-                </a></li>
-                <li><a href="#documentation" class="nav-link" data-view="documentation">
-                    <span class="nav-icon">📚</span>
-                    <span class="nav-text">Documentation</span>
-                </a></li>
-                <li><a href="#history" class="nav-link" data-view="history">
-                    <span class="nav-icon">📋</span>
-                    <span class="nav-text">History</span>
-                </a></li>
-            </ul>
-            <!-- Mobile Menu Toggle: For responsive mobile navigation -->
-            <button class="mobile-menu-toggle" id="mobileMenuToggle">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
+      <div class="nav-container">
+        <div class="nav-logo">
+          <span class="logo-text">EXOPEDIA</span>
         </div>
+        <!-- Navigation Links: Each link switches to a different view/section -->
+        <ul class="nav-links">
+          <li>
+            <a href="#landing" class="nav-link active" data-view="landing">
+              <span class="nav-icon">🏠</span>
+              <span class="nav-text">Home</span>
+            </a>
+          </li>
+          <li>
+            <a href="#detection" class="nav-link" data-view="detection">
+              <span class="nav-icon">🤖</span>
+              <span class="nav-text">AI Detection</span>
+            </a>
+          </li>
+          <li>
+            <a href="#results" class="nav-link" data-view="results">
+              <span class="nav-icon">📊</span>
+              <span class="nav-text">Results</span>
+            </a>
+          </li>
+          <li>
+            <a href="#dashboard" class="nav-link" data-view="dashboard">
+              <span class="nav-icon">🌌</span>
+              <span class="nav-text">Dashboard</span>
+            </a>
+          </li>
+          <li>
+            <a href="#explorer" class="nav-link" data-view="explorer">
+              <span class="nav-icon">🔭</span>
+              <span class="nav-text">Explorer</span>
+            </a>
+          </li>
+          <li>
+            <a href="#documentation" class="nav-link" data-view="documentation">
+              <span class="nav-icon">📚</span>
+              <span class="nav-text">Documentation</span>
+            </a>
+          </li>
+          <li>
+            <a href="#history" class="nav-link" data-view="history">
+              <span class="nav-icon">📋</span>
+              <span class="nav-text">History</span>
+            </a>
+          </li>
+        </ul>
+        <!-- Mobile Menu Toggle: For responsive mobile navigation -->
+        <button class="mobile-menu-toggle" id="mobileMenuToggle">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
     </nav>
 
     <!-- MAIN CONTAINER: Houses all app views/sections -->
     <main class="main-container">
-        
-        <!-- LANDING/HOME VIEW: Welcome screen with project overview -->
-        <section class="view landing-view active" id="landingView">
-            <!-- Animated background elements -->
-            <div class="star-field">
-                <div class="stars stars-small"></div>
-                <div class="stars stars-medium"></div>
-                <div class="stars stars-large"></div>
+      <!-- Decorative background elements shared across all views -->
+      <div class="star-field">
+        <div class="stars stars-small"></div>
+        <div class="stars stars-medium"></div>
+        <div class="stars stars-large"></div>
+      </div>
+
+      <!-- Floating decorative shapes -->
+      <div class="floating-elements">
+        <div class="floating-shape shape-1"></div>
+        <div class="floating-shape shape-2"></div>
+        <div class="floating-shape shape-3"></div>
+        <div class="floating-shape shape-4"></div>
+      </div>
+
+      <!-- Nebula overlay shared across all views -->
+      <div class="nebula-overlay"></div>
+
+      <!-- LANDING/HOME VIEW: Welcome screen with project overview -->
+      <section class="view landing-view active" id="landingView">
+        <!-- Main hero content -->
+        <div class="hero-section">
+          <div class="glassmorphic-card" id="heroCard">
+            <div class="card-content">
+              <h1 class="exopedia-title">EXOPEDIA</h1>
+              <p class="subtitle">
+                AI-Powered Exoplanet Detection & Discovery Platform
+              </p>
+              <p class="tagline">
+                Revolutionizing space exploration with advanced machine learning
+                algorithms
+              </p>
+
+              <!-- Project Description: Overview of platform capabilities -->
+              <div class="project-description">
+                <h2>AI-Powered Exoplanet Detection & Discovery Platform</h2>
+                <p>
+                  EXOPEDIA leverages cutting-edge machine learning algorithms to
+                  analyze astronomical data and identify potential exoplanets
+                  with unprecedented accuracy. Our platform combines NASA's
+                  latest datasets with advanced AI models to accelerate the
+                  discovery of worlds beyond our solar system.
+                </p>
+
+                <div class="key-features">
+                  <h3>Key Features</h3>
+                  <ul>
+                    <li>✨ 99.8% accuracy using ensemble AI models</li>
+                    <li>⚡ Real-time analysis of transit photometry data</li>
+                    <li>
+                      📊 Comprehensive exoplanet database with 5,000+ confirmed
+                      planets
+                    </li>
+                    <li>
+                      🔬 Professional-grade research tools for astronomers
+                    </li>
+                    <li>
+                      📚 Educational resources for space science enthusiasts
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <!-- Get Started Button: Opens tutorial modal -->
+              <div class="get-started-section">
+                <button class="get-started-btn" id="getStartedBtn">
+                  <span class="btn-icon">🚀</span>
+                  <span class="btn-text">Get Started</span>
+                </button>
+              </div>
+
+              <!-- Latest Discoveries: Dynamic timeline of recent findings -->
+              <!-- API Integration Point: Replace with real-time API data from exoplanet discovery services -->
+              <div class="latest-discoveries">
+                <h3>Latest Discovery Timeline</h3>
+                <div class="discovery-timeline" id="discoveryTimeline">
+                  <!-- Timeline items populated by JavaScript from API or database -->
+                </div>
+              </div>
+
+              <!-- Platform Capabilities: Feature overview grid -->
+              <div class="platform-summary">
+                <h3>Platform Capabilities Overview</h3>
+                <div class="capabilities-grid">
+                  <div class="capability-item">
+                    <div class="capability-icon">🧠</div>
+                    <h4>AI Detection Engine</h4>
+                    <p>
+                      Advanced ensemble models with 99.6% accuracy for exoplanet
+                      classification
+                    </p>
+                  </div>
+                  <div class="capability-item">
+                    <div class="capability-icon">📊</div>
+                    <h4>Real-time Analysis</h4>
+                    <p>
+                      Process astronomical data at 847 analyses per hour with
+                      instant results
+                    </p>
+                  </div>
+                  <div class="capability-item">
+                    <div class="capability-icon">🔍</div>
+                    <h4>Comprehensive Database</h4>
+                    <p>
+                      Search and compare 2,847+ confirmed exoplanets with
+                      similarity matching
+                    </p>
+                  </div>
+                  <div class="capability-item">
+                    <div class="capability-icon">🌌</div>
+                    <h4>3D Visualization</h4>
+                    <p>
+                      Immersive exploration of discovered worlds in interactive
+                      3D space
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Live Statistics: Animated counters showing platform metrics -->
+              <!-- API Integration Point: Connect to real-time statistics API -->
+              <div class="stats-preview">
+                <div class="stat-item">
+                  <span class="stat-number" data-target="2847">0</span>
+                  <span class="stat-label">Confirmed Exoplanets</span>
+                </div>
+                <div class="stat-item">
+                  <span class="stat-number" data-target="98.4">0</span>
+                  <span class="stat-label">% Accuracy Rate</span>
+                </div>
+                <div class="stat-item">
+                  <span class="stat-number" data-target="18492">0</span>
+                  <span class="stat-label">Total Analyses</span>
+                </div>
+              </div>
+
+              <!-- Value Proposition: Why choose this platform -->
+              <div class="value-proposition">
+                <h3>Why Choose EXOPEDIA?</h3>
+                <ul class="value-list">
+                  <li>
+                    ✨ <strong>Industry-leading accuracy:</strong> 99.6%
+                    detection precision with ensemble AI models
+                  </li>
+                  <li>
+                    ⚡ <strong>Lightning-fast processing:</strong> Get results
+                    in under 3 seconds
+                  </li>
+                  <li>
+                    🔬 <strong>Scientific rigor:</strong> Explainable AI shows
+                    detailed reasoning behind every decision
+                  </li>
+                  <li>
+                    🌍 <strong>Global impact:</strong> Trusted by 1,247 active
+                    researchers worldwide
+                  </li>
+                </ul>
+              </div>
+
+              <!-- Action Buttons: Navigate to main features -->
+              <div class="action-buttons">
+                <button class="explore-btn primary-cta" data-view="detection">
+                  <span class="btn-text">Start Detection Analysis</span>
+                  <div class="btn-glow"></div>
+                </button>
+                <button class="explore-btn secondary-cta" data-view="dashboard">
+                  <span class="btn-text">Explore Database</span>
+                  <div class="btn-glow"></div>
+                </button>
+              </div>
             </div>
-            
-            <!-- Floating decorative shapes -->
-            <div class="floating-elements">
-                <div class="floating-shape shape-1"></div>
-                <div class="floating-shape shape-2"></div>
-                <div class="floating-shape shape-3"></div>
-                <div class="floating-shape shape-4"></div>
+
+            <!-- Decorative card elements -->
+            <div class="card-decoration top-left"></div>
+            <div class="card-decoration top-right"></div>
+            <div class="card-decoration bottom-left"></div>
+            <div class="card-decoration bottom-right"></div>
+          </div>
+        </div>
+
+        <!-- Background overlay effects -->
+        <div class="nebula-overlay"></div>
+      </section>
+
+      <!-- DETECTION INTERFACE: Main analysis tool for exoplanet detection -->
+      <section class="view detection-view" id="detectionView">
+        <div class="view-container">
+          <div class="view-header">
+            <h2 class="view-title">AI Exoplanet Detection</h2>
+            <p class="view-subtitle">
+              Upload astronomical data or manually input parameters to discover
+              new worlds
+            </p>
+          </div>
+
+          <div class="detection-grid">
+            <!-- Data Upload Panel: File upload interface -->
+            <!-- API Integration Point: Connect to file processing service -->
+            <div class="detection-panel">
+              <div class="panel-header">
+                <h3>Data Upload</h3>
+                <p class="panel-description">
+                  Upload your astronomical data file
+                </p>
+              </div>
+
+              <div class="compact-upload-zone" id="uploadZone">
+                <div class="upload-icon">📁</div>
+                <p class="upload-text">Drop CSV file</p>
+                <input type="file" id="fileInput" accept=".csv,.fits" hidden />
+              </div>
+
+              <div class="upload-progress hidden" id="uploadProgress">
+                <div class="progress-bar">
+                  <div class="progress-fill"></div>
+                </div>
+                <span class="progress-text">0%</span>
+              </div>
             </div>
-            
-            <!-- Main hero content -->
-            <div class="hero-section">
-                <div class="glassmorphic-card" id="heroCard">
-                    <div class="card-content">
-                        <h1 class="exopedia-title">EXOPEDIA</h1>
-                        <p class="subtitle">AI-Powered Exoplanet Detection & Discovery Platform</p>
-                        <p class="tagline">Revolutionizing space exploration with advanced machine learning algorithms</p>
-                        
-                        <!-- Project Description: Overview of platform capabilities -->
-                        <div class="project-description">
-                            <h2>AI-Powered Exoplanet Detection & Discovery Platform</h2>
-                            <p>EXOPEDIA leverages cutting-edge machine learning algorithms to analyze astronomical data and identify potential exoplanets with unprecedented accuracy. Our platform combines NASA's latest datasets with advanced AI models to accelerate the discovery of worlds beyond our solar system.</p>
-                            
-                            <div class="key-features">
-                                <h3>Key Features</h3>
-                                <ul>
-                                    <li>✨ 99.8% accuracy using ensemble AI models</li>
-                                    <li>⚡ Real-time analysis of transit photometry data</li>
-                                    <li>📊 Comprehensive exoplanet database with 5,000+ confirmed planets</li>
-                                    <li>🔬 Professional-grade research tools for astronomers</li>
-                                    <li>📚 Educational resources for space science enthusiasts</li>
-                                </ul>
-                            </div>
-                        </div>
 
-                        <!-- Get Started Button: Opens tutorial modal -->
-                        <div class="get-started-section">
-                            <button class="get-started-btn" id="getStartedBtn">
-                                <span class="btn-icon">🚀</span>
-                                <span class="btn-text">Get Started</span>
-                            </button>
-                        </div>
-
-                        <!-- Latest Discoveries: Dynamic timeline of recent findings -->
-                        <!-- API Integration Point: Replace with real-time API data from exoplanet discovery services -->
-                        <div class="latest-discoveries">
-                            <h3>Latest Discovery Timeline</h3>
-                            <div class="discovery-timeline" id="discoveryTimeline">
-                                <!-- Timeline items populated by JavaScript from API or database -->
-                            </div>
-                        </div>
-                        
-                        <!-- Platform Capabilities: Feature overview grid -->
-                        <div class="platform-summary">
-                            <h3>Platform Capabilities Overview</h3>
-                            <div class="capabilities-grid">
-                                <div class="capability-item">
-                                    <div class="capability-icon">🧠</div>
-                                    <h4>AI Detection Engine</h4>
-                                    <p>Advanced ensemble models with 99.6% accuracy for exoplanet classification</p>
-                                </div>
-                                <div class="capability-item">
-                                    <div class="capability-icon">📊</div>
-                                    <h4>Real-time Analysis</h4>
-                                    <p>Process astronomical data at 847 analyses per hour with instant results</p>
-                                </div>
-                                <div class="capability-item">
-                                    <div class="capability-icon">🔍</div>
-                                    <h4>Comprehensive Database</h4>
-                                    <p>Search and compare 2,847+ confirmed exoplanets with similarity matching</p>
-                                </div>
-                                <div class="capability-item">
-                                    <div class="capability-icon">🌌</div>
-                                    <h4>3D Visualization</h4>
-                                    <p>Immersive exploration of discovered worlds in interactive 3D space</p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Live Statistics: Animated counters showing platform metrics -->
-                        <!-- API Integration Point: Connect to real-time statistics API -->
-                        <div class="stats-preview">
-                            <div class="stat-item">
-                                <span class="stat-number" data-target="2847">0</span>
-                                <span class="stat-label">Confirmed Exoplanets</span>
-                            </div>
-                            <div class="stat-item">
-                                <span class="stat-number" data-target="98.4">0</span>
-                                <span class="stat-label">% Accuracy Rate</span>
-                            </div>
-                            <div class="stat-item">
-                                <span class="stat-number" data-target="18492">0</span>
-                                <span class="stat-label">Total Analyses</span>
-                            </div>
-                        </div>
-                        
-                        <!-- Value Proposition: Why choose this platform -->
-                        <div class="value-proposition">
-                            <h3>Why Choose EXOPEDIA?</h3>
-                            <ul class="value-list">
-                                <li>✨ <strong>Industry-leading accuracy:</strong> 99.6% detection precision with ensemble AI models</li>
-                                <li>⚡ <strong>Lightning-fast processing:</strong> Get results in under 3 seconds</li>
-                                <li>🔬 <strong>Scientific rigor:</strong> Explainable AI shows detailed reasoning behind every decision</li>
-                                <li>🌍 <strong>Global impact:</strong> Trusted by 1,247 active researchers worldwide</li>
-                            </ul>
-                        </div>
-                        
-                        <!-- Action Buttons: Navigate to main features -->
-                        <div class="action-buttons">
-                            <button class="explore-btn primary-cta" data-view="detection">
-                                <span class="btn-text">Start Detection Analysis</span>
-                                <div class="btn-glow"></div>
-                            </button>
-                            <button class="explore-btn secondary-cta" data-view="dashboard">
-                                <span class="btn-text">Explore Database</span>
-                                <div class="btn-glow"></div>
-                            </button>
-                        </div>
-                    </div>
-                    
-                    <!-- Decorative card elements -->
-                    <div class="card-decoration top-left"></div>
-                    <div class="card-decoration top-right"></div>
-                    <div class="card-decoration bottom-left"></div>
-                    <div class="card-decoration bottom-right"></div>
-                </div>
+            <!-- Manual Parameters Panel: Direct parameter input -->
+            <!-- API Integration Point: Validate parameters against astronomical databases -->
+            <div class="detection-panel manual-params-panel">
+              <div class="panel-header">
+                <h3>Manual Parameters</h3>
+                <p class="panel-description">
+                  Enter astronomical parameters directly
+                </p>
+              </div>
+              <div class="manual-params-container">
+                <button class="manual-input-btn" id="openManualInput">
+                  <span class="btn-icon">⚙️</span>
+                  <span class="btn-text">Enter Astronomical Parameters</span>
+                </button>
+                <p class="manual-description">
+                  Input transit depth, orbital period, stellar temperature, and
+                  more
+                </p>
+              </div>
             </div>
-            
-            <!-- Background overlay effects -->
-            <div class="nebula-overlay"></div>
-        </section>
 
-        <!-- DETECTION INTERFACE: Main analysis tool for exoplanet detection -->
-        <section class="view detection-view" id="detectionView">
-            <div class="view-container">
-                <div class="view-header">
-                    <h2 class="view-title">AI Exoplanet Detection</h2>
-                    <p class="view-subtitle">Upload astronomical data or manually input parameters to discover new worlds</p>
+            <!-- Analysis Controls Panel: Execute AI analysis -->
+            <!-- API Integration Point: Connect to AI/ML analysis service -->
+            <div class="detection-panel analysis-panel">
+              <div class="panel-header">
+                <h3>Analysis Execution</h3>
+                <p class="panel-description">Run AI detection analysis</p>
+              </div>
+              <div class="control-section">
+                <button class="analyze-btn" id="analyzeBtn" disabled>
+                  <span class="btn-icon">🚀</span>
+                  <span class="btn-text">Execute Analysis</span>
+                </button>
+                <div class="analysis-progress hidden" id="analysisProgress">
+                  <div class="progress-bar">
+                    <div class="progress-fill"></div>
+                  </div>
+                  <span class="progress-text">Analyzing...</span>
                 </div>
-                
-                <div class="detection-grid">
-                    <!-- Data Upload Panel: File upload interface -->
-                    <!-- API Integration Point: Connect to file processing service -->
-                    <div class="detection-panel">
-                        <div class="panel-header">
-                            <h3>Data Upload</h3>
-                            <p class="panel-description">Upload your astronomical data file</p>
-                        </div>
-                        
-                        <div class="compact-upload-zone" id="uploadZone">
-                            <div class="upload-icon">📁</div>
-                            <p class="upload-text">Drop CSV file</p>
-                            <input type="file" id="fileInput" accept=".csv,.fits" hidden>
-                        </div>
-                        
-                        <div class="upload-progress hidden" id="uploadProgress">
-                            <div class="progress-bar">
-                                <div class="progress-fill"></div>
-                            </div>
-                            <span class="progress-text">0%</span>
-                        </div>
+                <div class="analysis-info">
+                  <p id="analysisStatus">
+                    Upload data or enter manual parameters to begin analysis
+                  </p>
+                  <div class="analysis-details hidden" id="analysisDetails">
+                    <div class="detail-item">
+                      <span class="detail-label">Estimated time:</span>
+                      <span class="detail-value">2-5 seconds</span>
                     </div>
-                    
-                    <!-- Manual Parameters Panel: Direct parameter input -->
-                    <!-- API Integration Point: Validate parameters against astronomical databases -->
-                    <div class="detection-panel manual-params-panel">
-                        <div class="panel-header">
-                            <h3>Manual Parameters</h3>
-                            <p class="panel-description">Enter astronomical parameters directly</p>
-                        </div>
-                        <div class="manual-params-container">
-                            <button class="manual-input-btn" id="openManualInput">
-                                <span class="btn-icon">⚙️</span>
-                                <span class="btn-text">Enter Astronomical Parameters</span>
-                            </button>
-                            <p class="manual-description">Input transit depth, orbital period, stellar temperature, and more</p>
-                        </div>
+                    <div class="detail-item">
+                      <span class="detail-label">Processing method:</span>
+                      <span class="detail-value"
+                        >Hybrid Ensemble Classifier</span
+                      >
                     </div>
-                    
-                    <!-- Analysis Controls Panel: Execute AI analysis -->
-                    <!-- API Integration Point: Connect to AI/ML analysis service -->
-                    <div class="detection-panel analysis-panel">
-                        <div class="panel-header">
-                            <h3>Analysis Execution</h3>
-                            <p class="panel-description">Run AI detection analysis</p>
-                        </div>
-                        <div class="control-section">
-                            <button class="analyze-btn" id="analyzeBtn" disabled>
-                                <span class="btn-icon">🚀</span>
-                                <span class="btn-text">Execute Analysis</span>
-                            </button>
-                            <div class="analysis-progress hidden" id="analysisProgress">
-                                <div class="progress-bar">
-                                    <div class="progress-fill"></div>
-                                </div>
-                                <span class="progress-text">Analyzing...</span>
-                            </div>
-                            <div class="analysis-info">
-                                <p id="analysisStatus">Upload data or enter manual parameters to begin analysis</p>
-                                <div class="analysis-details hidden" id="analysisDetails">
-                                    <div class="detail-item">
-                                        <span class="detail-label">Estimated time:</span>
-                                        <span class="detail-value">2-5 seconds</span>
-                                    </div>
-                                    <div class="detail-item">
-                                        <span class="detail-label">Processing method:</span>
-                                        <span class="detail-value">Hybrid Ensemble Classifier</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                  </div>
                 </div>
+              </div>
             </div>
-        </section>
+          </div>
+        </div>
+      </section>
 
-        <!-- RESULTS INTERFACE: Display analysis results and findings -->
-        <section class="view results-view" id="resultsView">
-            <div class="view-container">
-                <div class="view-header">
-                    <h2 class="view-title">Detection Results</h2>
-                    <p class="view-subtitle">AI analysis complete - comprehensive findings and explanations</p>
+      <!-- RESULTS INTERFACE: Display analysis results and findings -->
+      <section class="view results-view" id="resultsView">
+        <div class="view-container">
+          <div class="view-header">
+            <h2 class="view-title">Detection Results</h2>
+            <p class="view-subtitle">
+              AI analysis complete - comprehensive findings and explanations
+            </p>
+          </div>
+
+          <div class="results-grid">
+            <!-- Classification & Confidence Display -->
+            <!-- API Integration Point: Real-time confidence scoring from ML models -->
+            <div class="classification-panel">
+              <div class="classification-result" id="classificationResult">
+                <div class="classification-icon">
+                  <div class="icon-circle">?</div>
                 </div>
-                
-                <div class="results-grid">
-                    <!-- Classification & Confidence Display -->
-                    <!-- API Integration Point: Real-time confidence scoring from ML models -->
-                    <div class="classification-panel">
-                        <div class="classification-result" id="classificationResult">
-                            <div class="classification-icon">
-                                <div class="icon-circle">?</div>
-                            </div>
-                            <div class="classification-text">
-                                <h3 class="classification-label">Analysis Pending</h3>
-                                <p class="classification-desc">Complete analysis to see classification results</p>
-                            </div>
-                        </div>
-                        <div class="accuracy-display" id="accuracyDisplay">
-                            <div class="accuracy-circle">
-                                <div class="circle-progress" data-percentage="0">
-                                    <span class="percentage-text">0%</span>
-                                </div>
-                            </div>
-                            <p class="accuracy-label">Model Confidence</p>
-                        </div>
-                    </div>
-
-                    <!-- Parameters & Analysis Details -->
-                    <!-- API Integration Point: Detailed parameter analysis from scientific databases -->
-                    <div class="analysis-details-panel">
-                        <div class="panel-header">
-                            <h3>Analysis Parameters & Details</h3>
-                            <p class="panel-description">Parameters used and analysis methodology</p>
-                        </div>
-                        <div class="parameters-section" id="parametersSection">
-                            <div class="no-data">Complete analysis to see parameters and deciding factors</div>
-                        </div>
-                        <div class="dataset-info" id="datasetInfo">
-                            <div class="no-data">Dataset information will appear here</div>
-                        </div>
-                        <div class="error-disclaimer hidden" id="errorDisclaimer">
-                            <div class="disclaimer-content">
-                                <h4>⚠️ Data Insufficient Warning</h4>
-                                <p>The provided data may be insufficient for reliable analysis. Results should be interpreted with caution and additional data collection is recommended.</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Key Supporting Factors: Scientific evidence -->
-                    <!-- API Integration Point: Expert system reasoning API -->
-                    <div class="key-factors-panel">
-                        <div class="panel-header">
-                            <h3>Deciding Factors</h3>
-                            <p class="panel-description">Scientific evidence backing the AI decision</p>
-                        </div>
-                        <div class="factors-list" id="factorsList">
-                            <div class="no-data">Complete analysis to see supporting factors and their importance weights</div>
-                        </div>
-                    </div>
-                    
-                    <!-- Similar Exoplanets: Database comparison results -->
-                    <!-- API Integration Point: Exoplanet comparison and similarity API -->
-                    <div class="similar-planets-panel">
-                        <div class="panel-header">
-                            <h3>Similar Confirmed Exoplanets</h3>
-                            <p class="panel-description">Database matches with comparable characteristics</p>
-                        </div>
-                        <div class="similar-planets-list" id="similarPlanetsList">
-                            <div class="no-data">Complete analysis to see similar exoplanets from our database</div>
-                        </div>
-                    </div>
-
-                    <!-- Export & Actions Panel: Results management -->
-                    <div class="results-actions-panel">
-                        <div class="panel-header">
-                            <h3>Analysis Actions</h3>
-                            <p class="panel-description">Export results and perform additional actions</p>
-                        </div>
-                        <div class="action-buttons-grid">
-                            <button class="action-btn export-btn" id="exportResults" disabled>
-                                <span class="btn-icon">💾</span>
-                                <span class="btn-text">Export Results</span>
-                            </button>
-                            <button class="action-btn share-btn" id="shareResults" disabled>
-                                <span class="btn-icon">🔗</span>
-                                <span class="btn-text">Share Discovery</span>
-                            </button>
-                            <button class="action-btn new-analysis-btn" data-view="detection">
-                                <span class="btn-icon">🔄</span>
-                                <span class="btn-text">New Analysis</span>
-                            </button>
-                            <button class="action-btn explore-similar-btn" id="exploreSimilar" disabled>
-                                <span class="btn-icon">🔍</span>
-                                <span class="btn-text">Explore Similar</span>
-                            </button>
-                        </div>
-                    </div>
+                <div class="classification-text">
+                  <h3 class="classification-label">Analysis Pending</h3>
+                  <p class="classification-desc">
+                    Complete analysis to see classification results
+                  </p>
                 </div>
+              </div>
+              <div class="accuracy-display" id="accuracyDisplay">
+                <div class="accuracy-circle">
+                  <div class="circle-progress" data-percentage="0">
+                    <span class="percentage-text">0%</span>
+                  </div>
+                </div>
+                <p class="accuracy-label">Model Confidence</p>
+              </div>
             </div>
-        </section>
 
-        <!-- DASHBOARD: Analytics, search, and platform insights -->
-        <section class="view dashboard-view" id="dashboardView">
-            <div class="view-container">
-                <div class="view-header">
-                    <h2 class="view-title">Mission Control Dashboard</h2>
-                    <p class="view-subtitle">Comprehensive analytics, search capabilities, and platform insights</p>
+            <!-- Parameters & Analysis Details -->
+            <!-- API Integration Point: Detailed parameter analysis from scientific databases -->
+            <div class="analysis-details-panel">
+              <div class="panel-header">
+                <h3>Analysis Parameters & Details</h3>
+                <p class="panel-description">
+                  Parameters used and analysis methodology
+                </p>
+              </div>
+              <div class="parameters-section" id="parametersSection">
+                <div class="no-data">
+                  Complete analysis to see parameters and deciding factors
                 </div>
-                
-                <div class="dashboard-grid">
-                    <!-- Platform Statistics: Live metrics and analytics -->
-                    <!-- API Integration Point: Real-time statistics API -->
-                    <div class="dashboard-card stats-card">
-                        <div class="card-header">
-                            <h3>Platform Performance</h3>
-                            <button class="refresh-stats-btn" id="refreshStats">🔄</button>
-                        </div>
-                        <div class="stats-grid">
-                            <div class="stat-item confirmed clickable-stat" data-category="confirmed">
-                                <div class="stat-value" data-target="2847">0</div>
-                                <div class="stat-label">Confirmed Exoplanets</div>
-                                <div class="stat-trend">+23 this month</div>
-                            </div>
-                            <div class="stat-item candidate clickable-stat" data-category="candidates">
-                                <div class="stat-value" data-target="1205">0</div>
-                                <div class="stat-label">Candidate Exoplanets</div>
-                                <div class="stat-trend">+87 pending review</div>
-                            </div>
-                            <div class="stat-item false-positive clickable-stat" data-category="false_positives">
-                                <div class="stat-value" data-target="14440">0</div>
-                                <div class="stat-label">False Positives</div>
-                                <div class="stat-trend">Filtered out</div>
-                            </div>
-                            <div class="stat-item accuracy">
-                                <div class="stat-value" data-target="98.4">0</div>
-                                <div class="stat-label">Average Accuracy %</div>
-                                <div class="stat-trend">99.97% uptime</div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Advanced Database Search: Search and filter interface -->
-                    <!-- API Integration Point: Elasticsearch or database search API -->
-                    <div class="dashboard-card search-card">
-                        <div class="card-header">
-                            <h3>Exoplanet Database Search</h3>
-                            <span class="database-count">2,847 confirmed + 1,205 candidates</span>
-                        </div>
-                        <div class="search-controls">
-                            <div class="search-input-group">
-                                <input type="text" id="planetSearchInput" placeholder="Search by name, mission, or characteristics..." class="form-control">
-                                <button class="search-btn" id="searchBtn">🔍</button>
-                            </div>
-                            <div class="filter-controls">
-                                <select id="classificationFilter" class="form-control">
-                                    <option value="">All Classifications</option>
-                                    <option value="CONFIRMED">Confirmed Exoplanets</option>
-                                    <option value="CANDIDATE">Candidate Exoplanets</option>
-                                </select>
-                                <button class="filter-btn" id="advancedFilterBtn">Advanced Filters</button>
-                                <button class="auto-complete-btn" id="autoCompleteBtn">Auto-Complete</button>
-                            </div>
-                        </div>
-                        <div class="search-results" id="searchResults">
-                            <div class="search-placeholder">Enter search terms to explore our comprehensive exoplanet database</div>
-                        </div>
-                    </div>
-                    
-                    <!-- Analysis History: Track user activities -->
-                    <!-- API Integration Point: User activity and history API -->
-                    <div class="dashboard-card history-card">
-                        <div class="card-header">
-                            <h3>Recent Analysis Activity</h3>
-                            <div class="history-actions">
-                                <button class="export-history-btn" id="exportHistory">📊 Export</button>
-                                <button class="clear-history-btn" id="clearHistoryBtn">🗑️ Clear</button>
-                            </div>
-                        </div>
-                        <div class="history-filters">
-                            <select id="historyFilter" class="form-control">
-                                <option value="all">All Activities</option>
-                                <option value="analysis">Analyses Only</option>
-                                <option value="search">Searches Only</option>
-                            </select>
-                        </div>
-                        <div class="history-list" id="historyList">
-                            <div class="no-history">No analysis history yet - start by running your first detection</div>
-                        </div>
-                    </div>
-                    
-                    <!-- Similarity Finder: Advanced comparison tools -->
-                    <!-- API Integration Point: Machine learning similarity computation API -->
-                    <div class="dashboard-card similarity-card">
-                        <div class="card-header">
-                            <h3>Similarity Finder</h3>
-                            <span class="finder-description">Find exoplanets with matching characteristics</span>
-                        </div>
-                        <div class="similarity-controls">
-                            <button class="similarity-btn" id="openSimilarityFinder">
-                                <span class="btn-icon">🔬</span>
-                                <span class="btn-text">Open Similarity Finder</span>
-                            </button>
-                            <button class="batch-compare-btn" id="batchCompare">
-                                <span class="btn-icon">📊</span>
-                                <span class="btn-text">Batch Comparison</span>
-                            </button>
-                        </div>
-                        <div class="quick-filters">
-                            <button class="quick-filter-btn" data-filter="earth-like">🌍 Earth-like</button>
-                            <button class="quick-filter-btn" data-filter="hot-jupiter">🔥 Hot Jupiters</button>
-                            <button class="quick-filter-btn" data-filter="habitable">🌱 Habitable Zone</button>
-                        </div>
-                        <div class="similarity-results" id="similarityResults">
-                            <div class="no-results">Use similarity finder to discover planets with matching characteristics</div>
-                        </div>
-                    </div>
+              </div>
+              <div class="dataset-info" id="datasetInfo">
+                <div class="no-data">Dataset information will appear here</div>
+              </div>
+              <div class="error-disclaimer hidden" id="errorDisclaimer">
+                <div class="disclaimer-content">
+                  <h4>⚠️ Data Insufficient Warning</h4>
+                  <p>
+                    The provided data may be insufficient for reliable analysis.
+                    Results should be interpreted with caution and additional
+                    data collection is recommended.
+                  </p>
                 </div>
+              </div>
             </div>
-        </section>
 
-        <!-- 3D EXPLORER: Interactive visualization -->
-        <section class="view explorer-view" id="explorerView">
-            <div class="view-container">
-                <div class="view-header">
-                    <h2 class="view-title">3D Exoplanet Explorer</h2>
-                    <p class="view-subtitle">Immersive visualization of confirmed exoplanets in interactive 3D space</p>
+            <!-- Key Supporting Factors: Scientific evidence -->
+            <!-- API Integration Point: Expert system reasoning API -->
+            <div class="key-factors-panel">
+              <div class="panel-header">
+                <h3>Deciding Factors</h3>
+                <p class="panel-description">
+                  Scientific evidence backing the AI decision
+                </p>
+              </div>
+              <div class="factors-list" id="factorsList">
+                <div class="no-data">
+                  Complete analysis to see supporting factors and their
+                  importance weights
                 </div>
-                
-                <div class="explorer-layout">
-                    <!-- Explorer Controls: Filter and visualization options -->
-                    <!-- API Integration Point: 3D visualization and filtering API -->
-                    <div class="explorer-controls">
-                        <div class="control-panel">
-                            <h4>Exploration Controls</h4>
-                            
-                            <div class="control-group">
-                                <label>Distance Filter (light-years)</label>
-                                <input type="range" id="distanceSlider" min="1" max="1500" value="1500" class="form-control">
-                                <span id="distanceDisplay">1500 ly</span>
-                            </div>
-                            
-                            <div class="control-group">
-                                <label>Planet Size Category</label>
-                                <select id="sizeFilter" class="form-control">
-                                    <option value="all">All Sizes</option>
-                                    <option value="small">Earth-like (< 2 R⊕)</option>
-                                    <option value="large">Super-Earth (> 2 R⊕)</option>
-                                    <option value="giant">Gas Giants (> 10 R⊕)</option>
-                                </select>
-                            </div>
-                            
-                            <div class="control-group">
-                                <label>Habitability Potential</label>
-                                <select id="habitabilityFilter" class="form-control">
-                                    <option value="all">All Planets</option>
-                                    <option value="high">High Potential (> 8.0)</option>
-                                    <option value="medium">Medium Potential (5.0-8.0)</option>
-                                    <option value="low">Low Potential (< 5.0)</option>
-                                </select>
-                            </div>
-                            
-                            <div class="control-group">
-                                <label>Discovery Mission</label>
-                                <select id="missionFilter" class="form-control">
-                                    <option value="all">All Missions</option>
-                                    <option value="Kepler">Kepler Space Telescope</option>
-                                    <option value="TESS">TESS Mission</option>
-                                    <option value="TRAPPIST">TRAPPIST Survey</option>
-                                    <option value="K2">K2 Mission</option>
-                                </select>
-                            </div>
-                            
-                            <div class="visualization-controls">
-                                <h5>Visualization Options</h5>
-                                <button class="viz-btn active" id="resetView">🔄 Reset View</button>
-                                <button class="viz-btn" id="animateOrbit">▶️ Animate Orbits</button>
-                                <button class="viz-btn" id="showLabels">🏷️ Toggle Labels</button>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- 3D Scene: Interactive planet visualization -->
-                    <!-- API Integration Point: 3D rendering engine and planet data API -->
-                    <div class="explorer-scene">
-                        <div class="scene-container" id="sceneContainer">
-                            <div class="space-scene">
-                                <div class="scene-controls">
-                                    <button class="scene-control-btn" id="zoomIn">🔍+</button>
-                                    <button class="scene-control-btn" id="zoomOut">🔍-</button>
-                                    <button class="scene-control-btn" id="fullscreen">⛶</button>
-                                </div>
-                                <div class="planet-system" id="planetSystem">
-                                    <!-- Planets dynamically generated by JavaScript -->
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Planet Information Panel: Selected planet details -->
-                        <div class="scene-info" id="sceneInfo">
-                            <div class="info-panel">
-                                <h4>Interactive 3D Explorer</h4>
-                                <p>Click on any exoplanet to view detailed characteristics. Use controls to filter by distance, size, and habitability potential.</p>
-                                <div class="explorer-stats">
-                                    <div class="explorer-stat">
-                                        <span class="stat-number" id="visiblePlanets">5</span>
-                                        <span class="stat-label">Visible Planets</span>
-                                    </div>
-                                    <div class="explorer-stat">
-                                        <span class="stat-number" id="avgDistance">250</span>
-                                        <span class="stat-label">Avg Distance (ly)</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+              </div>
             </div>
-        </section>
 
-        <!-- DOCUMENTATION PAGE: User guides and technical docs -->
-        <section class="view documentation-view" id="documentationView">
-            <div class="view-container">
-                <div class="view-header">
-                    <h2 class="view-title">Documentation</h2>
-                    <p class="view-subtitle">Comprehensive user guide and technical documentation</p>
+            <!-- Similar Exoplanets: Database comparison results -->
+            <!-- API Integration Point: Exoplanet comparison and similarity API -->
+            <div class="similar-planets-panel">
+              <div class="panel-header">
+                <h3>Similar Confirmed Exoplanets</h3>
+                <p class="panel-description">
+                  Database matches with comparable characteristics
+                </p>
+              </div>
+              <div class="similar-planets-list" id="similarPlanetsList">
+                <div class="no-data">
+                  Complete analysis to see similar exoplanets from our database
                 </div>
-                
-                <div class="documentation-grid">
-                    <!-- Documentation sections with guides and help content -->
-                    <!-- API Integration Point: Dynamic documentation system, CMS integration -->
-                    <div class="doc-section">
-                        <div class="doc-card">
-                            <h3>Getting Started</h3>
-                            <p>Learn how to upload data and get your first exoplanet analysis results</p>
-                            <div class="doc-content">
-                                <h4>Quick Start Guide</h4>
-                                <ol>
-                                    <li><strong>Upload Your Data:</strong> Drag and drop CSV files containing light curve data or use our manual parameter input</li>
-                                    <li><strong>AI Analysis:</strong> Our ensemble AI model analyzes your data using Random Forest, CNN, and advanced algorithms</li>
-                                    <li><strong>Review Results:</strong> Get detailed classification results with confidence scores and scientific explanations</li>
-                                    <li><strong>Explore & Compare:</strong> Use our database to find similar exoplanets and explore the 3D visualization</li>
-                                </ol>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="doc-section">
-                        <div class="doc-card">
-                            <h3>Data Formats</h3>
-                            <p>Supported file formats and data structure requirements</p>
-                            <div class="doc-content">
-                                <h4>Supported Formats</h4>
-                                <ul>
-                                    <li><strong>CSV Files:</strong> Comma-separated values with time series data</li>
-                                    <li><strong>FITS Files:</strong> Flexible Image Transport System files</li>
-                                </ul>
-                                <h4>Required Columns</h4>
-                                <ul>
-                                    <li>Time (BJD or MJD format)</li>
-                                    <li>Flux or Magnitude values</li>
-                                    <li>Error values (optional but recommended)</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="doc-section">
-                        <div class="doc-card">
-                            <h3>AI Models</h3>
-                            <p>Understanding our machine learning algorithms and accuracy metrics</p>
-                            <div class="doc-content">
-                                <h4>Ensemble Classifier</h4>
-                                <p>Our primary model combines Random Forest, Convolutional Neural Networks, and Support Vector Machines for maximum accuracy (99.6%).</p>
-                                <h4>Model Features</h4>
-                                <ul>
-                                    <li>Cross-validation with 5-fold methodology</li>
-                                    <li>Uncertainty quantification</li>
-                                    <li>Feature importance analysis</li>
-                                    <li>Explainable AI outputs</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="doc-section">
-                        <div class="doc-card">
-                            <h3>Results Interpretation</h3>
-                            <p>How to read and understand your analysis results</p>
-                            <div class="doc-content">
-                                <h4>Classification Types</h4>
-                                <ul>
-                                    <li><strong>Confirmed:</strong> High confidence detection (>95% accuracy)</li>
-                                    <li><strong>Candidate:</strong> Potential detection requiring follow-up (80-95% accuracy)</li>
-                                    <li><strong>False Positive:</strong> Signal likely from stellar activity or noise</li>
-                                </ul>
-                                <h4>Confidence Scores</h4>
-                                <p>Our confidence scores represent the model's certainty in the classification, based on statistical analysis of signal characteristics.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="doc-section">
-                        <div class="doc-card">
-                            <h3>API Reference</h3>
-                            <p>Technical documentation for developers and researchers</p>
-                            <div class="doc-content">
-                                <h4>REST API Endpoints</h4>
-                                <ul>
-                                    <li><code>POST /api/analyze</code> - Submit data for analysis</li>
-                                    <li><code>GET /api/results/{id}</code> - Retrieve analysis results</li>
-                                    <li><code>GET /api/database/search</code> - Search exoplanet database</li>
-                                    <li><code>GET /api/similarity/{id}</code> - Find similar exoplanets</li>
-                                </ul>
-                                <h4>Authentication</h4>
-                                <p>API access requires authentication tokens. Contact support for developer access.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+              </div>
             </div>
-        </section>
 
-        <!-- HISTORY PAGE: Analysis timeline and activity log -->
-        <section class="view history-view" id="historyView">
-            <div class="view-container">
-                <div class="view-header">
-                    <h2 class="view-title">Analysis History</h2>
-                    <p class="view-subtitle">Chronological list of all analyses and activities</p>
-                </div>
-                
-                <div class="history-content">
-                    <!-- History Controls: Filter and manage history -->
-                    <!-- API Integration Point: User activity tracking and history management API -->
-                    <div class="history-controls">
-                        <div class="filter-controls">
-                            <select id="historyTypeFilter" class="form-control">
-                                <option value="all">All Activities</option>
-                                <option value="analysis">Analyses Only</option>
-                                <option value="search">Searches Only</option>
-                                <option value="export">Exports Only</option>
-                            </select>
-                            <select id="historyDateFilter" class="form-control">
-                                <option value="all">All Time</option>
-                                <option value="today">Today</option>
-                                <option value="week">This Week</option>
-                                <option value="month">This Month</option>
-                            </select>
-                            <button class="btn btn--secondary" id="clearAllHistory">Clear All History</button>
-                        </div>
-                    </div>
-                    
-                    <!-- History Timeline: Chronological activity display -->
-                    <div class="history-timeline" id="historyTimeline">
-                        <div class="no-history">No history available. Start using EXOPEDIA to see your analysis timeline here.</div>
-                    </div>
-                </div>
+            <!-- Export & Actions Panel: Results management -->
+            <div class="results-actions-panel">
+              <div class="panel-header">
+                <h3>Analysis Actions</h3>
+                <p class="panel-description">
+                  Export results and perform additional actions
+                </p>
+              </div>
+              <div class="action-buttons-grid">
+                <button
+                  class="action-btn export-btn"
+                  id="exportResults"
+                  disabled
+                >
+                  <span class="btn-icon">💾</span>
+                  <span class="btn-text">Export Results</span>
+                </button>
+                <button class="action-btn share-btn" id="shareResults" disabled>
+                  <span class="btn-icon">🔗</span>
+                  <span class="btn-text">Share Discovery</span>
+                </button>
+                <button
+                  class="action-btn new-analysis-btn"
+                  data-view="detection"
+                >
+                  <span class="btn-icon">🔄</span>
+                  <span class="btn-text">New Analysis</span>
+                </button>
+                <button
+                  class="action-btn explore-similar-btn"
+                  id="exploreSimilar"
+                  disabled
+                >
+                  <span class="btn-icon">🔍</span>
+                  <span class="btn-text">Explore Similar</span>
+                </button>
+              </div>
             </div>
-        </section>
+          </div>
+        </div>
+      </section>
+
+      <!-- DASHBOARD: Analytics, search, and platform insights -->
+      <section class="view dashboard-view" id="dashboardView">
+        <div class="view-container">
+          <div class="view-header">
+            <h2 class="view-title">Mission Control Dashboard</h2>
+            <p class="view-subtitle">
+              Comprehensive analytics, search capabilities, and platform
+              insights
+            </p>
+          </div>
+
+          <div class="dashboard-grid">
+            <!-- Platform Statistics: Live metrics and analytics -->
+            <!-- API Integration Point: Real-time statistics API -->
+            <div class="dashboard-card stats-card">
+              <div class="card-header">
+                <h3>Platform Performance</h3>
+                <button class="refresh-stats-btn" id="refreshStats">🔄</button>
+              </div>
+              <div class="stats-grid">
+                <div
+                  class="stat-item confirmed clickable-stat"
+                  data-category="confirmed"
+                >
+                  <div class="stat-value" data-target="2847">0</div>
+                  <div class="stat-label">Confirmed Exoplanets</div>
+                  <div class="stat-trend">+23 this month</div>
+                </div>
+                <div
+                  class="stat-item candidate clickable-stat"
+                  data-category="candidates"
+                >
+                  <div class="stat-value" data-target="1205">0</div>
+                  <div class="stat-label">Candidate Exoplanets</div>
+                  <div class="stat-trend">+87 pending review</div>
+                </div>
+                <div
+                  class="stat-item false-positive clickable-stat"
+                  data-category="false_positives"
+                >
+                  <div class="stat-value" data-target="14440">0</div>
+                  <div class="stat-label">False Positives</div>
+                  <div class="stat-trend">Filtered out</div>
+                </div>
+                <div class="stat-item accuracy">
+                  <div class="stat-value" data-target="98.4">0</div>
+                  <div class="stat-label">Average Accuracy %</div>
+                  <div class="stat-trend">99.97% uptime</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Advanced Database Search: Search and filter interface -->
+            <!-- API Integration Point: Elasticsearch or database search API -->
+            <div class="dashboard-card search-card">
+              <div class="card-header">
+                <h3>Exoplanet Database Search</h3>
+                <span class="database-count"
+                  >2,847 confirmed + 1,205 candidates</span
+                >
+              </div>
+              <div class="search-controls">
+                <div class="search-input-group">
+                  <input
+                    type="text"
+                    id="planetSearchInput"
+                    placeholder="Search by name, mission, or characteristics..."
+                    class="form-control"
+                  />
+                  <button class="search-btn" id="searchBtn">🔍</button>
+                </div>
+                <div class="filter-controls">
+                  <select id="classificationFilter" class="form-control">
+                    <option value="">All Classifications</option>
+                    <option value="CONFIRMED">Confirmed Exoplanets</option>
+                    <option value="CANDIDATE">Candidate Exoplanets</option>
+                  </select>
+                  <button class="filter-btn" id="advancedFilterBtn">
+                    Advanced Filters
+                  </button>
+                  <button class="auto-complete-btn" id="autoCompleteBtn">
+                    Auto-Complete
+                  </button>
+                </div>
+              </div>
+              <div class="search-results" id="searchResults">
+                <div class="search-placeholder">
+                  Enter search terms to explore our comprehensive exoplanet
+                  database
+                </div>
+              </div>
+            </div>
+
+            <!-- Analysis History: Track user activities -->
+            <!-- API Integration Point: User activity and history API -->
+            <div class="dashboard-card history-card">
+              <div class="card-header">
+                <h3>Recent Analysis Activity</h3>
+                <div class="history-actions">
+                  <button class="export-history-btn" id="exportHistory">
+                    📊 Export
+                  </button>
+                  <button class="clear-history-btn" id="clearHistoryBtn">
+                    🗑️ Clear
+                  </button>
+                </div>
+              </div>
+              <div class="history-filters">
+                <select id="historyFilter" class="form-control">
+                  <option value="all">All Activities</option>
+                  <option value="analysis">Analyses Only</option>
+                  <option value="search">Searches Only</option>
+                </select>
+              </div>
+              <div class="history-list" id="historyList">
+                <div class="no-history">
+                  No analysis history yet - start by running your first
+                  detection
+                </div>
+              </div>
+            </div>
+
+            <!-- Similarity Finder: Advanced comparison tools -->
+            <!-- API Integration Point: Machine learning similarity computation API -->
+            <div class="dashboard-card similarity-card">
+              <div class="card-header">
+                <h3>Similarity Finder</h3>
+                <span class="finder-description"
+                  >Find exoplanets with matching characteristics</span
+                >
+              </div>
+              <div class="similarity-controls">
+                <button class="similarity-btn" id="openSimilarityFinder">
+                  <span class="btn-icon">🔬</span>
+                  <span class="btn-text">Open Similarity Finder</span>
+                </button>
+                <button class="batch-compare-btn" id="batchCompare">
+                  <span class="btn-icon">📊</span>
+                  <span class="btn-text">Batch Comparison</span>
+                </button>
+              </div>
+              <div class="quick-filters">
+                <button class="quick-filter-btn" data-filter="earth-like">
+                  🌍 Earth-like
+                </button>
+                <button class="quick-filter-btn" data-filter="hot-jupiter">
+                  🔥 Hot Jupiters
+                </button>
+                <button class="quick-filter-btn" data-filter="habitable">
+                  🌱 Habitable Zone
+                </button>
+              </div>
+              <div class="similarity-results" id="similarityResults">
+                <div class="no-results">
+                  Use similarity finder to discover planets with matching
+                  characteristics
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3D EXPLORER: Interactive visualization -->
+      <section class="view explorer-view" id="explorerView">
+        <div class="view-container">
+          <div class="view-header">
+            <h2 class="view-title">3D Exoplanet Explorer</h2>
+            <p class="view-subtitle">
+              Immersive visualization of confirmed exoplanets in interactive 3D
+              space
+            </p>
+          </div>
+
+          <div class="explorer-layout">
+            <!-- Explorer Controls: Filter and visualization options -->
+            <!-- API Integration Point: 3D visualization and filtering API -->
+            <div class="explorer-controls">
+              <div class="control-panel">
+                <h4>Exploration Controls</h4>
+
+                <div class="control-group">
+                  <label>Distance Filter (light-years)</label>
+                  <input
+                    type="range"
+                    id="distanceSlider"
+                    min="1"
+                    max="1500"
+                    value="1500"
+                    class="form-control"
+                  />
+                  <span id="distanceDisplay">1500 ly</span>
+                </div>
+
+                <div class="control-group">
+                  <label>Planet Size Category</label>
+                  <select id="sizeFilter" class="form-control">
+                    <option value="all">All Sizes</option>
+                    <option value="small">Earth-like (< 2 R⊕)</option>
+                    <option value="large">Super-Earth (> 2 R⊕)</option>
+                    <option value="giant">Gas Giants (> 10 R⊕)</option>
+                  </select>
+                </div>
+
+                <div class="control-group">
+                  <label>Habitability Potential</label>
+                  <select id="habitabilityFilter" class="form-control">
+                    <option value="all">All Planets</option>
+                    <option value="high">High Potential (> 8.0)</option>
+                    <option value="medium">Medium Potential (5.0-8.0)</option>
+                    <option value="low">Low Potential (< 5.0)</option>
+                  </select>
+                </div>
+
+                <div class="control-group">
+                  <label>Discovery Mission</label>
+                  <select id="missionFilter" class="form-control">
+                    <option value="all">All Missions</option>
+                    <option value="Kepler">Kepler Space Telescope</option>
+                    <option value="TESS">TESS Mission</option>
+                    <option value="TRAPPIST">TRAPPIST Survey</option>
+                    <option value="K2">K2 Mission</option>
+                  </select>
+                </div>
+
+                <div class="visualization-controls">
+                  <h5>Visualization Options</h5>
+                  <button class="viz-btn active" id="resetView">
+                    🔄 Reset View
+                  </button>
+                  <button class="viz-btn" id="animateOrbit">
+                    ▶️ Animate Orbits
+                  </button>
+                  <button class="viz-btn" id="showLabels">
+                    🏷️ Toggle Labels
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- 3D Scene: Interactive planet visualization -->
+            <!-- API Integration Point: 3D rendering engine and planet data API -->
+            <div class="explorer-scene">
+              <div class="scene-container" id="sceneContainer">
+                <div class="space-scene">
+                  <div class="scene-controls">
+                    <button class="scene-control-btn" id="zoomIn">🔍+</button>
+                    <button class="scene-control-btn" id="zoomOut">🔍-</button>
+                    <button class="scene-control-btn" id="fullscreen">⛶</button>
+                  </div>
+                  <div class="planet-system" id="planetSystem">
+                    <!-- Planets dynamically generated by JavaScript -->
+                  </div>
+                </div>
+              </div>
+
+              <!-- Planet Information Panel: Selected planet details -->
+              <div class="scene-info" id="sceneInfo">
+                <div class="info-panel">
+                  <h4>Interactive 3D Explorer</h4>
+                  <p>
+                    Click on any exoplanet to view detailed characteristics. Use
+                    controls to filter by distance, size, and habitability
+                    potential.
+                  </p>
+                  <div class="explorer-stats">
+                    <div class="explorer-stat">
+                      <span class="stat-number" id="visiblePlanets">5</span>
+                      <span class="stat-label">Visible Planets</span>
+                    </div>
+                    <div class="explorer-stat">
+                      <span class="stat-number" id="avgDistance">250</span>
+                      <span class="stat-label">Avg Distance (ly)</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- DOCUMENTATION PAGE: User guides and technical docs -->
+      <section class="view documentation-view" id="documentationView">
+        <div class="view-container">
+          <div class="view-header">
+            <h2 class="view-title">Documentation</h2>
+            <p class="view-subtitle">
+              Comprehensive user guide and technical documentation
+            </p>
+          </div>
+
+          <div class="documentation-grid">
+            <!-- Documentation sections with guides and help content -->
+            <!-- API Integration Point: Dynamic documentation system, CMS integration -->
+            <div class="doc-section">
+              <div class="doc-card">
+                <h3>Getting Started</h3>
+                <p>
+                  Learn how to upload data and get your first exoplanet analysis
+                  results
+                </p>
+                <div class="doc-content">
+                  <h4>Quick Start Guide</h4>
+                  <ol>
+                    <li>
+                      <strong>Upload Your Data:</strong> Drag and drop CSV files
+                      containing light curve data or use our manual parameter
+                      input
+                    </li>
+                    <li>
+                      <strong>AI Analysis:</strong> Our ensemble AI model
+                      analyzes your data using Random Forest, CNN, and advanced
+                      algorithms
+                    </li>
+                    <li>
+                      <strong>Review Results:</strong> Get detailed
+                      classification results with confidence scores and
+                      scientific explanations
+                    </li>
+                    <li>
+                      <strong>Explore & Compare:</strong> Use our database to
+                      find similar exoplanets and explore the 3D visualization
+                    </li>
+                  </ol>
+                </div>
+              </div>
+            </div>
+
+            <div class="doc-section">
+              <div class="doc-card">
+                <h3>Data Formats</h3>
+                <p>Supported file formats and data structure requirements</p>
+                <div class="doc-content">
+                  <h4>Supported Formats</h4>
+                  <ul>
+                    <li>
+                      <strong>CSV Files:</strong> Comma-separated values with
+                      time series data
+                    </li>
+                    <li>
+                      <strong>FITS Files:</strong> Flexible Image Transport
+                      System files
+                    </li>
+                  </ul>
+                  <h4>Required Columns</h4>
+                  <ul>
+                    <li>Time (BJD or MJD format)</li>
+                    <li>Flux or Magnitude values</li>
+                    <li>Error values (optional but recommended)</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="doc-section">
+              <div class="doc-card">
+                <h3>AI Models</h3>
+                <p>
+                  Understanding our machine learning algorithms and accuracy
+                  metrics
+                </p>
+                <div class="doc-content">
+                  <h4>Ensemble Classifier</h4>
+                  <p>
+                    Our primary model combines Random Forest, Convolutional
+                    Neural Networks, and Support Vector Machines for maximum
+                    accuracy (99.6%).
+                  </p>
+                  <h4>Model Features</h4>
+                  <ul>
+                    <li>Cross-validation with 5-fold methodology</li>
+                    <li>Uncertainty quantification</li>
+                    <li>Feature importance analysis</li>
+                    <li>Explainable AI outputs</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="doc-section">
+              <div class="doc-card">
+                <h3>Results Interpretation</h3>
+                <p>How to read and understand your analysis results</p>
+                <div class="doc-content">
+                  <h4>Classification Types</h4>
+                  <ul>
+                    <li>
+                      <strong>Confirmed:</strong> High confidence detection
+                      (>95% accuracy)
+                    </li>
+                    <li>
+                      <strong>Candidate:</strong> Potential detection requiring
+                      follow-up (80-95% accuracy)
+                    </li>
+                    <li>
+                      <strong>False Positive:</strong> Signal likely from
+                      stellar activity or noise
+                    </li>
+                  </ul>
+                  <h4>Confidence Scores</h4>
+                  <p>
+                    Our confidence scores represent the model's certainty in the
+                    classification, based on statistical analysis of signal
+                    characteristics.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="doc-section">
+              <div class="doc-card">
+                <h3>API Reference</h3>
+                <p>Technical documentation for developers and researchers</p>
+                <div class="doc-content">
+                  <h4>REST API Endpoints</h4>
+                  <ul>
+                    <li>
+                      <code>POST /api/analyze</code> - Submit data for analysis
+                    </li>
+                    <li>
+                      <code>GET /api/results/{id}</code> - Retrieve analysis
+                      results
+                    </li>
+                    <li>
+                      <code>GET /api/database/search</code> - Search exoplanet
+                      database
+                    </li>
+                    <li>
+                      <code>GET /api/similarity/{id}</code> - Find similar
+                      exoplanets
+                    </li>
+                  </ul>
+                  <h4>Authentication</h4>
+                  <p>
+                    API access requires authentication tokens. Contact support
+                    for developer access.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- HISTORY PAGE: Analysis timeline and activity log -->
+      <section class="view history-view" id="historyView">
+        <div class="view-container">
+          <div class="view-header">
+            <h2 class="view-title">Analysis History</h2>
+            <p class="view-subtitle">
+              Chronological list of all analyses and activities
+            </p>
+          </div>
+
+          <div class="history-content">
+            <!-- History Controls: Filter and manage history -->
+            <!-- API Integration Point: User activity tracking and history management API -->
+            <div class="history-controls">
+              <div class="filter-controls">
+                <select id="historyTypeFilter" class="form-control">
+                  <option value="all">All Activities</option>
+                  <option value="analysis">Analyses Only</option>
+                  <option value="search">Searches Only</option>
+                  <option value="export">Exports Only</option>
+                </select>
+                <select id="historyDateFilter" class="form-control">
+                  <option value="all">All Time</option>
+                  <option value="today">Today</option>
+                  <option value="week">This Week</option>
+                  <option value="month">This Month</option>
+                </select>
+                <button class="btn btn--secondary" id="clearAllHistory">
+                  Clear All History
+                </button>
+              </div>
+            </div>
+
+            <!-- History Timeline: Chronological activity display -->
+            <div class="history-timeline" id="historyTimeline">
+              <div class="no-history">
+                No history available. Start using EXOPEDIA to see your analysis
+                timeline here.
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
 
     <!-- MANUAL PARAMETER INPUT MODAL: Scrollable parameter form -->
     <!-- SCROLLING FIX APPLIED: Modal body now has max-height and overflow-y: auto -->
     <div class="modal hidden" id="manualInputModal">
-        <div class="modal-overlay"></div>
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3>Manual Parameter Input</h3>
-                <p class="modal-subtitle">Enter astronomical parameters for AI analysis</p>
-                <button class="modal-close" id="closeManualInput">×</button>
-            </div>
-            <!-- SCROLLABLE CONTENT AREA: This section now scrolls when content exceeds max-height -->
-            <div class="modal-body manual-input-scrollable">
-                <form id="manualInputForm" class="parameter-form">
-                    <!-- Parameter Input Fields: Scientific parameter collection -->
-                    <!-- API Integration Point: Parameter validation and astronomical unit conversion -->
-                    <div class="form-group">
-                        <label for="orbitalPeriod">Orbital Period (days)</label>
-                        <input type="number" id="orbitalPeriod" name="orbitalPeriod" step="0.1" min="0.1" max="10000" class="form-control" required>
-                        <small>Time required for planet to complete one orbit (e.g., Earth: 365.25 days)</small>
-                    </div>
-                    <div class="form-group">
-                        <label for="transitDuration">Transit Duration (hours)</label>
-                        <input type="number" id="transitDuration" name="transitDuration" step="0.1" min="0.1" max="100" class="form-control" required>
-                        <small>Duration of planetary transit across stellar disk (typical: 1-6 hours)</small>
-                    </div>
-                    <div class="form-group">
-                        <label for="planetRadius">Planet Radius (Earth radii)</label>
-                        <input type="number" id="planetRadius" name="planetRadius" step="0.1" min="0.1" max="30" class="form-control" required>
-                        <small>Size of planet relative to Earth (e.g., Jupiter: 11.2 R⊕)</small>
-                    </div>
-                    <div class="form-group">
-                        <label for="stellarTemperature">Stellar Temperature (Kelvin)</label>
-                        <input type="number" id="stellarTemperature" name="stellarTemperature" step="1" min="2000" max="10000" class="form-control" required>
-                        <small>Surface temperature of host star (e.g., Sun: 5778 K)</small>
-                    </div>
-                    <div class="form-group">
-                        <label for="transitDepth">Transit Depth (ppm)</label>
-                        <input type="number" id="transitDepth" name="transitDepth" step="1" min="1" max="50000" class="form-control" required>
-                        <small>Light dimming during transit (e.g., Earth: ~84 ppm)</small>
-                    </div>
-                    <div class="form-actions">
-                        <button type="button" class="btn btn--secondary" id="cancelManualInput">Cancel</button>
-                        <button type="submit" class="btn btn--primary">Submit for Analysis</button>
-                    </div>
-                </form>
-            </div>
+      <div class="modal-overlay"></div>
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Manual Parameter Input</h3>
+          <p class="modal-subtitle">
+            Enter astronomical parameters for AI analysis
+          </p>
+          <button class="modal-close" id="closeManualInput">×</button>
         </div>
+        <!-- SCROLLABLE CONTENT AREA: This section now scrolls when content exceeds max-height -->
+        <div class="modal-body manual-input-scrollable">
+          <form id="manualInputForm" class="parameter-form">
+            <!-- Parameter Input Fields: Scientific parameter collection -->
+            <!-- API Integration Point: Parameter validation and astronomical unit conversion -->
+            <div class="form-group">
+              <label for="orbitalPeriod">Orbital Period (days)</label>
+              <input
+                type="number"
+                id="orbitalPeriod"
+                name="orbitalPeriod"
+                step="0.1"
+                min="0.1"
+                max="10000"
+                class="form-control"
+                required
+              />
+              <small
+                >Time required for planet to complete one orbit (e.g., Earth:
+                365.25 days)</small
+              >
+            </div>
+            <div class="form-group">
+              <label for="transitDuration">Transit Duration (hours)</label>
+              <input
+                type="number"
+                id="transitDuration"
+                name="transitDuration"
+                step="0.1"
+                min="0.1"
+                max="100"
+                class="form-control"
+                required
+              />
+              <small
+                >Duration of planetary transit across stellar disk (typical: 1-6
+                hours)</small
+              >
+            </div>
+            <div class="form-group">
+              <label for="planetRadius">Planet Radius (Earth radii)</label>
+              <input
+                type="number"
+                id="planetRadius"
+                name="planetRadius"
+                step="0.1"
+                min="0.1"
+                max="30"
+                class="form-control"
+                required
+              />
+              <small
+                >Size of planet relative to Earth (e.g., Jupiter: 11.2
+                R⊕)</small
+              >
+            </div>
+            <div class="form-group">
+              <label for="stellarTemperature"
+                >Stellar Temperature (Kelvin)</label
+              >
+              <input
+                type="number"
+                id="stellarTemperature"
+                name="stellarTemperature"
+                step="1"
+                min="2000"
+                max="10000"
+                class="form-control"
+                required
+              />
+              <small
+                >Surface temperature of host star (e.g., Sun: 5778 K)</small
+              >
+            </div>
+            <div class="form-group">
+              <label for="transitDepth">Transit Depth (ppm)</label>
+              <input
+                type="number"
+                id="transitDepth"
+                name="transitDepth"
+                step="1"
+                min="1"
+                max="50000"
+                class="form-control"
+                required
+              />
+              <small>Light dimming during transit (e.g., Earth: ~84 ppm)</small>
+            </div>
+            <div class="form-actions">
+              <button
+                type="button"
+                class="btn btn--secondary"
+                id="cancelManualInput"
+              >
+                Cancel
+              </button>
+              <button type="submit" class="btn btn--primary">
+                Submit for Analysis
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
 
     <!-- GET STARTED TUTORIAL MODAL: Guided introduction -->
     <div class="modal hidden" id="tutorialModal">
-        <div class="modal-overlay"></div>
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3>Getting Started with EXOPEDIA</h3>
-                <p class="modal-subtitle">Quick guidance to get you started</p>
-                <button class="modal-close" id="closeTutorial">×</button>
-            </div>
-            <div class="modal-body">
-                <div class="tutorial-content" id="tutorialContent">
-                    <!-- Tutorial steps populated by JavaScript -->
-                </div>
-                <div class="tutorial-navigation">
-                    <button class="btn btn--secondary" id="prevStep" disabled>Previous</button>
-                    <span class="step-indicator" id="stepIndicator">Step 1 of 4</span>
-                    <button class="btn btn--primary" id="nextStep">Next</button>
-                </div>
-            </div>
+      <div class="modal-overlay"></div>
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Getting Started with EXOPEDIA</h3>
+          <p class="modal-subtitle">Quick guidance to get you started</p>
+          <button class="modal-close" id="closeTutorial">×</button>
         </div>
+        <div class="modal-body">
+          <div class="tutorial-content" id="tutorialContent">
+            <!-- Tutorial steps populated by JavaScript -->
+          </div>
+          <div class="tutorial-navigation">
+            <button class="btn btn--secondary" id="prevStep" disabled>
+              Previous
+            </button>
+            <span class="step-indicator" id="stepIndicator">Step 1 of 4</span>
+            <button class="btn btn--primary" id="nextStep">Next</button>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- CATEGORY DETAILS MODAL: Statistics breakdown -->
     <div class="modal hidden" id="categoryModal">
-        <div class="modal-overlay"></div>
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 id="categoryTitle">Category Details</h3>
-                <p class="modal-subtitle">Recent discoveries and accuracy information</p>
-                <button class="modal-close" id="closeCategoryModal">×</button>
-            </div>
-            <div class="modal-body">
-                <div class="category-details" id="categoryDetails">
-                    <!-- Category details populated by JavaScript -->
-                </div>
-            </div>
+      <div class="modal-overlay"></div>
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 id="categoryTitle">Category Details</h3>
+          <p class="modal-subtitle">
+            Recent discoveries and accuracy information
+          </p>
+          <button class="modal-close" id="closeCategoryModal">×</button>
         </div>
+        <div class="modal-body">
+          <div class="category-details" id="categoryDetails">
+            <!-- Category details populated by JavaScript -->
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- SIMILARITY FINDER MODAL: Advanced planet comparison -->
     <div class="modal hidden" id="similarityModal">
-        <div class="modal-overlay"></div>
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3>Find Similar Exoplanets</h3>
-                <p class="modal-subtitle">Define target characteristics to find matching planets</p>
-                <button class="modal-close" id="closeSimilarityModal">×</button>
-            </div>
-            <div class="modal-body">
-                <form id="similarityForm" class="parameter-form">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="targetRadius">Target Radius (Earth radii)</label>
-                            <input type="number" id="targetRadius" name="targetRadius" step="0.1" min="0.1" max="30" class="form-control" value="1.0">
-                        </div>
-                        <div class="form-group">
-                            <label for="targetPeriod">Target Orbital Period (days)</label>
-                            <input type="number" id="targetPeriod" name="targetPeriod" step="0.1" min="0.1" max="10000" class="form-control" value="365">
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="targetDistance">Max Distance (light-years)</label>
-                            <input type="number" id="targetDistance" name="targetDistance" step="0.1" min="1" max="5000" class="form-control" value="100">
-                        </div>
-                        <div class="form-group">
-                            <label for="similarityThreshold">Similarity Threshold (%)</label>
-                            <input type="number" id="similarityThreshold" name="similarityThreshold" step="1" min="50" max="100" class="form-control" value="70">
-                        </div>
-                    </div>
-                    <div class="form-actions">
-                        <button type="button" class="btn btn--secondary" id="cancelSimilarity">Cancel</button>
-                        <button type="submit" class="btn btn--primary">Find Similar Planets</button>
-                    </div>
-                </form>
-                <div class="similarity-results-modal" id="similarityResultsModal">
-                    <!-- Results populated by JavaScript -->
-                </div>
-            </div>
+      <div class="modal-overlay"></div>
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Find Similar Exoplanets</h3>
+          <p class="modal-subtitle">
+            Define target characteristics to find matching planets
+          </p>
+          <button class="modal-close" id="closeSimilarityModal">×</button>
         </div>
+        <div class="modal-body">
+          <form id="similarityForm" class="parameter-form">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="targetRadius">Target Radius (Earth radii)</label>
+                <input
+                  type="number"
+                  id="targetRadius"
+                  name="targetRadius"
+                  step="0.1"
+                  min="0.1"
+                  max="30"
+                  class="form-control"
+                  value="1.0"
+                />
+              </div>
+              <div class="form-group">
+                <label for="targetPeriod">Target Orbital Period (days)</label>
+                <input
+                  type="number"
+                  id="targetPeriod"
+                  name="targetPeriod"
+                  step="0.1"
+                  min="0.1"
+                  max="10000"
+                  class="form-control"
+                  value="365"
+                />
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="targetDistance">Max Distance (light-years)</label>
+                <input
+                  type="number"
+                  id="targetDistance"
+                  name="targetDistance"
+                  step="0.1"
+                  min="1"
+                  max="5000"
+                  class="form-control"
+                  value="100"
+                />
+              </div>
+              <div class="form-group">
+                <label for="similarityThreshold"
+                  >Similarity Threshold (%)</label
+                >
+                <input
+                  type="number"
+                  id="similarityThreshold"
+                  name="similarityThreshold"
+                  step="1"
+                  min="50"
+                  max="100"
+                  class="form-control"
+                  value="70"
+                />
+              </div>
+            </div>
+            <div class="form-actions">
+              <button
+                type="button"
+                class="btn btn--secondary"
+                id="cancelSimilarity"
+              >
+                Cancel
+              </button>
+              <button type="submit" class="btn btn--primary">
+                Find Similar Planets
+              </button>
+            </div>
+          </form>
+          <div class="similarity-results-modal" id="similarityResultsModal">
+            <!-- Results populated by JavaScript -->
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- ADVANCED FILTERS MODAL: Complex search options -->
     <div class="modal hidden" id="advancedFiltersModal">
-        <div class="modal-overlay"></div>
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3>Advanced Search Filters</h3>
-                <p class="modal-subtitle">Refine your search with multiple criteria</p>
-                <button class="modal-close" id="closeAdvancedFilters">×</button>
-            </div>
-            <div class="modal-body">
-                <form id="advancedFiltersForm" class="parameter-form">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="minRadius">Min Radius (R⊕)</label>
-                            <input type="number" id="minRadius" name="minRadius" step="0.1" min="0.1" class="form-control" placeholder="0.1">
-                        </div>
-                        <div class="form-group">
-                            <label for="maxRadius">Max Radius (R⊕)</label>
-                            <input type="number" id="maxRadius" name="maxRadius" step="0.1" min="0.1" class="form-control" placeholder="30.0">
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="minDistance">Min Distance (ly)</label>
-                            <input type="number" id="minDistance" name="minDistance" step="0.1" min="0.1" class="form-control" placeholder="1.0">
-                        </div>
-                        <div class="form-group">
-                            <label for="maxDistance">Max Distance (ly)</label>
-                            <input type="number" id="maxDistance" name="maxDistance" step="0.1" min="0.1" class="form-control" placeholder="1500.0">
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="discoveryMission">Discovery Mission</label>
-                            <select id="discoveryMission" class="form-control">
-                                <option value="">All Missions</option>
-                                <option value="Kepler">Kepler Space Telescope</option>
-                                <option value="TESS">TESS Mission</option>
-                                <option value="TRAPPIST">TRAPPIST Survey</option>
-                                <option value="K2">K2 Mission</option>
-                                <option value="ESO">ESO Ground-based</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="discoveryYear">Discovery Year Range</label>
-                            <select id="discoveryYear" class="form-control">
-                                <option value="">All Years</option>
-                                <option value="2020-2024">2020-2024 (Recent)</option>
-                                <option value="2015-2019">2015-2019</option>
-                                <option value="2010-2014">2010-2014</option>
-                                <option value="2000-2009">2000-2009 (Early)</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-actions">
-                        <button type="button" class="btn btn--secondary" id="resetFilters">Reset All</button>
-                        <button type="submit" class="btn btn--primary">Apply Filters</button>
-                    </div>
-                </form>
-            </div>
+      <div class="modal-overlay"></div>
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Advanced Search Filters</h3>
+          <p class="modal-subtitle">
+            Refine your search with multiple criteria
+          </p>
+          <button class="modal-close" id="closeAdvancedFilters">×</button>
         </div>
+        <div class="modal-body">
+          <form id="advancedFiltersForm" class="parameter-form">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="minRadius">Min Radius (R⊕)</label>
+                <input
+                  type="number"
+                  id="minRadius"
+                  name="minRadius"
+                  step="0.1"
+                  min="0.1"
+                  class="form-control"
+                  placeholder="0.1"
+                />
+              </div>
+              <div class="form-group">
+                <label for="maxRadius">Max Radius (R⊕)</label>
+                <input
+                  type="number"
+                  id="maxRadius"
+                  name="maxRadius"
+                  step="0.1"
+                  min="0.1"
+                  class="form-control"
+                  placeholder="30.0"
+                />
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="minDistance">Min Distance (ly)</label>
+                <input
+                  type="number"
+                  id="minDistance"
+                  name="minDistance"
+                  step="0.1"
+                  min="0.1"
+                  class="form-control"
+                  placeholder="1.0"
+                />
+              </div>
+              <div class="form-group">
+                <label for="maxDistance">Max Distance (ly)</label>
+                <input
+                  type="number"
+                  id="maxDistance"
+                  name="maxDistance"
+                  step="0.1"
+                  min="0.1"
+                  class="form-control"
+                  placeholder="1500.0"
+                />
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="discoveryMission">Discovery Mission</label>
+                <select id="discoveryMission" class="form-control">
+                  <option value="">All Missions</option>
+                  <option value="Kepler">Kepler Space Telescope</option>
+                  <option value="TESS">TESS Mission</option>
+                  <option value="TRAPPIST">TRAPPIST Survey</option>
+                  <option value="K2">K2 Mission</option>
+                  <option value="ESO">ESO Ground-based</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="discoveryYear">Discovery Year Range</label>
+                <select id="discoveryYear" class="form-control">
+                  <option value="">All Years</option>
+                  <option value="2020-2024">2020-2024 (Recent)</option>
+                  <option value="2015-2019">2015-2019</option>
+                  <option value="2010-2014">2010-2014</option>
+                  <option value="2000-2009">2000-2009 (Early)</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-actions">
+              <button
+                type="button"
+                class="btn btn--secondary"
+                id="resetFilters"
+              >
+                Reset All
+              </button>
+              <button type="submit" class="btn btn--primary">
+                Apply Filters
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
 
     <!-- JAVASCRIPT: Main application logic and interactions -->
     <script src="app.js"></script>
-</body>
+  </body>
 </html>

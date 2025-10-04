@@ -315,6 +315,46 @@ body {
   padding-top: var(--nav-offset);
 }
 
+/* Data islands: make panels/cards opaque (non-glass) for better readability
+   These selectors aim to capture the primary UI surfaces used across the app. */
+.card,
+.glassmorphic-card,
+.detection-panel,
+.analysis-panel,
+.analysis-details-panel,
+.classification-panel,
+.dashboard-card,
+.doc-card,
+.manual-params-panel,
+.project-description,
+.latest-discoveries,
+.platform-summary,
+.capability-item,
+.results-actions-panel,
+.similar-planets-panel,
+.parameters-section,
+.dataset-info,
+.scene-info,
+.search-card,
+.history-card,
+.explorer-controls,
+.explorer-scene {
+  background-color: var(--ui-surface-opaque) !important;
+  color: var(--color-text) !important;
+  border: 1px solid rgba(255, 255, 255, 0.06) !important;
+  box-shadow: var(--shadow-md) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+/* Slightly reduce transparency on small components that still used glass variables */
+.panel-header,
+.panel-description,
+.card__header,
+.card__body {
+  background: transparent !important;
+}
+
 *,
 *::before,
 *::after {
@@ -773,15 +813,29 @@ select.form-control {
   --z-navigation: 1000;
   --z-modal: 9999;
   --z-loading: 10000;
+  /* Opaque surface for data islands (panels/cards) */
+  --surface-opaque: rgba(10, 12, 16, 0.96);
   /* Estimated vertical offset from top to clear the fixed navigation (tweak as needed).
      Reduced to minimize large empty gaps above content. */
   --nav-offset: 92px;
   --nav-offset-mobile: 64px;
+  /* Background image for the whole app. Place your image at 'assets/space-bg.jpg'
+     or update the path below to point to your local file (for example the temp path
+     you provided). */
+  --bg-image: url("assets/space-bg.jpg");
+  --ui-surface-opaque: rgba(6, 8, 10, 0.96);
 }
 
 /* Enhanced Base Styles - Foundation styles for the application */
 body {
-  background: var(--deep-space);
+  /* Use a full-bleed space background image layered under a subtle overlay
+     so the site matches the provided starfield / milky-way image. */
+  background-image: linear-gradient(rgba(2, 6, 10, 0.45), rgba(2, 6, 10, 0.45)),
+    var(--bg-image);
+  background-color: var(--deep-space);
+  background-size: cover;
+  background-position: center center;
+  background-attachment: fixed;
   color: var(--color-text);
   font-family: var(--font-family-base);
   overflow-x: hidden; /* Prevent horizontal scrolling */
@@ -799,6 +853,53 @@ body {
 .loading-screen {
   position: fixed;
   top: 0;
+
+  /* Opaque Data Islands
+   Override glassmorphic backgrounds for main content panels so "data islands"
+   are opaque and readable against the starfield background. Uses the
+   --ui-surface-opaque variable defined in :root. We use !important to ensure
+   these overrides take precedence over earlier glass styles. */
+  .card,
+  .card__body,
+  .card__header,
+  .card__footer,
+  .glassmorphic-card,
+  .detection-panel,
+  .analysis-panel,
+  .analysis-details-panel,
+  .classification-panel,
+  .dashboard-card,
+  .doc-card,
+  .panel-header,
+  .project-description,
+  .latest-discoveries,
+  .value-proposition,
+  .capability-item,
+  .manual-params-panel,
+  .results-actions-panel,
+  .parameters-section,
+  .dataset-info,
+  .modal-content,
+  .modal-body,
+  .explorer-controls,
+  .search-results,
+  .history-card,
+  .results-grid > div,
+  .detection-grid > .detection-panel {
+    background: var(--ui-surface-opaque) !important;
+    color: var(--color-text) !important;
+    border: 1px solid rgba(255, 255, 255, 0.04) !important;
+    box-shadow: var(--shadow-md) !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+
+  /* Make buttons and smaller interactive elements preserve contrast */
+  .btn,
+  .btn--primary,
+  .btn--secondary {
+    z-index: 3;
+  }
   left: 0;
   width: 100%;
   height: 100%;
@@ -864,6 +965,30 @@ body {
   gap: var(--space-32);
   box-shadow: var(--shadow-lg);
 }
+
+/* Opaque UI surfaces: make data-island cards and panels solid for better readability */
+.card,
+.glassmorphic-card,
+.detection-panel,
+.analysis-panel,
+.classification-panel,
+.analysis-details-panel,
+.dashboard-card,
+.doc-card,
+.manual-params-panel,
+.results-actions-panel,
+.project-description,
+.latest-discoveries,
+.platform-summary,
+.value-proposition {
+  background: var(--ui-surface-opaque) !important;
+  border: 1px solid rgba(255, 255, 255, 0.06) !important;
+  box-shadow: var(--shadow-md) !important;
+  color: var(--color-text) !important;
+  backdrop-filter: none !important; /* disable blur so it's fully opaque */
+}
+
+/* Keep small decorative glass elements (nav) if desired; adjust above selectors to remove nav if you want nav to remain glassy */
 
 .nav-logo .logo-text {
   font-size: var(--font-size-lg);
@@ -1067,6 +1192,56 @@ body {
   width: 100%;
   height: 100%;
   z-index: 1;
+}
+
+/* Ensure background decorations sit behind content and don't intercept pointer events */
+.star-field,
+.floating-elements,
+.nebula-overlay {
+  pointer-events: none;
+  z-index: 0; /* sit behind content */
+}
+
+.floating-elements {
+  z-index: 2; /* above the stars but still behind main content */
+}
+
+.nebula-overlay {
+  z-index: 0; /* subtle overlay under content */
+}
+
+/* Ensure main content sits above decorative background */
+.main-container,
+.view,
+.view-container {
+  position: relative;
+  z-index: 3;
+}
+
+/* Make data 'islands' opaque and disable glass blur */
+.card,
+.card__body,
+.card__header,
+.card__footer,
+.glassmorphic-card,
+.detection-panel,
+.analysis-panel,
+.classification-panel,
+.analysis-details-panel,
+.dashboard-card,
+.doc-card,
+.manual-params-panel,
+.results-actions-panel,
+.similar-planets-panel {
+  background: var(--surface-opaque) !important;
+  border-color: rgba(255, 255, 255, 0.03) !important;
+  box-shadow: var(--shadow-md) !important;
+  backdrop-filter: none !important; /* disable blur so it's fully opaque */
+}
+
+/* Slightly reduce opacity on floating shapes so they remain decorative */
+.floating-shape {
+  opacity: 0.7;
 }
 
 .stars {
